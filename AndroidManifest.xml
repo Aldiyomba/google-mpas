@@ -1,1 +1,127 @@
+package com.example.alfandiyomba;
 
+import androidx.fragment.app.FragmentActivity;
+
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.example.alfandiyomba.databinding.ActivityMapsBinding;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+    private GoogleMap mMap;
+    private ActivityMapsBinding binding;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        binding = ActivityMapsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
+
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in stmikBMP and move the camera
+        LatLng stmikBMP = new LatLng(-0.8866620358995086, 119.8755012001087);
+        LatLng lorongjuang4 = new LatLng(-0.8450389069188662, 119.88691668093037);
+        // custom size marker
+        int tinggi = 100;
+        int lebar = 100;
+        BitmapDrawable bitmapStart = (BitmapDrawable)getResources().getDrawable(com.google.android.gms.base.R.drawable.googleg_standard_color_18);
+        BitmapDrawable bitmapDes = (BitmapDrawable)getResources().getDrawable(com.google.android.gms.base.R.drawable.googleg_standard_color_18);
+        Bitmap s = bitmapStart.getBitmap();
+        Bitmap d = bitmapDes.getBitmap();
+        Bitmap markerStart = Bitmap.createScaledBitmap(s, lebar, tinggi, false);
+        Bitmap markerDes = Bitmap.createScaledBitmap(d, lebar, tinggi, false);
+
+        // Add marker to map
+        mMap.addMarker(new MarkerOptions().position(stmikBMP).title("Marker in StmikBMP")
+                        .snippet("Ini adalah kampus saya")
+                                .icon(BitmapDescriptorFactory.fromBitmap(markerStart)));
+        mMap.addMarker(new MarkerOptions().position(lorongjuang4).title("Marker in Lorongjuang4")
+                        .snippet("Ini adalah alamat tempat tinggal saya")
+                                .icon(BitmapDescriptorFactory.fromBitmap(markerDes)));
+
+        mMap.addPolyline(new PolylineOptions().add(
+                stmikBMP,
+                new LatLng(-0.8866618581448594, 119.87548534537045),
+                new LatLng(-0.8853565609246378, 119.8756371630438),
+                new LatLng(-0.8844973390016642, 119.87584403743041),
+                new LatLng(-0.8837972321025273, 119.87598725815961),
+                new LatLng(-0.8831607711706058, 119.87609865206007),
+                new LatLng(-0.8824924870748028, 119.87621004596053),
+                new LatLng(-0.8818082913284989, 119.87640100693278),
+                new LatLng(-0.8811559184919757, 119.87668744842445),
+                new LatLng(-0.8805831032170893, 119.87691023621812),
+                new LatLng(-0.8799466417355808, 119.87659196793103),
+                new LatLng(-0.878960126224695, 119.87654422768797),
+                new LatLng(-0.8780213450303584, 119.87668744843694),
+                new LatLng(-0.8763824553717467, 119.87691023623788),
+                new LatLng(-0.8745526262258294, 119.87716485088),
+                new LatLng(-0.8725795920664151, 119.87745129235503),
+                new LatLng(-0.8709088768308351, 119.8777059070169),
+                new LatLng(-0.8698746242004535, 119.87775364725996),
+                new LatLng(-0.8684584932160633, 119.87756268628773),
+                new LatLng(-0.8677424716926324, 119.87794460826753),
+                new LatLng(-0.8662467819286948, 119.87859705825603),
+                new LatLng(-0.8647033567186911, 119.87934498880551),
+                new LatLng(-0.8621097645119676, 119.88055440839413),
+                new LatLng(-0.8610595978626662, 119.88135007911183),
+                new LatLng(-0.8604708679252173, 119.88168426086212),
+                new LatLng(-0.8597230216862012, 119.88185930841999),
+                new LatLng(-0.8592297613108146, 119.88219349013909),
+                new LatLng(-0.8588797055003522, 119.88270271948468),
+                new LatLng(-0.8584660031471466, 119.88327560247524),
+                new LatLng(-0.8562383744155788, 119.88383257200361),
+                new LatLng(-0.8555541739137605, 119.88399170614717),
+                new LatLng(-0.8530560454019809, 119.8834983903001),
+                new LatLng(-0.8503828869961502, 119.88292550732827),
+                new LatLng(-0.8486962504158911, 119.88260723904118),
+                new LatLng(-0.8486962504158911, 119.88351430365934),
+                new LatLng(-0.8486007803987806, 119.8842144938909),
+                new LatLng(-0.84866442707713, 119.8852170389952),
+                new LatLng(-0.84866442707713, 119.88578992191192),
+                new LatLng(-0.8464208809958382, 119.88580583533565),
+                new LatLng(-0.8452434165505088, 119.88572626824515),
+                new LatLng(-0.8451220121253277, 119.88606708627691),
+                new LatLng(-0.8450623433098756, 119.88632965761374),
+                new LatLng(-0.8449907407301397, 119.88639728962474),
+                new LatLng(-0.8450305199412681, 119.88661609907211),
+                new LatLng(-0.845364665298683, 119.88661212071852),
+                new LatLng(-0.8453805769816509, 119.88688264876254),
+                new LatLng(-0.8451458796512362, 119.88690254053047),
+                lorongjuang4
+                ).width(10)
+                .color(Color.BLUE)
+        );
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(stmikBMP));
+    }
+}
